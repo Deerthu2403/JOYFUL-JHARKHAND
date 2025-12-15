@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful Jharkhand</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+      transition: opacity 0.8s ease; /* Transition effect */
+    }
+
+    body.fade-out {
+      opacity: 0; /* Fade out when navigating */
+    }
+
+    /* Video Background */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; 
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: yellowgreen;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-text {
+      font-family: "Monotype Corsiva", cursive;
+      font-size: 50px;
+      font-weight: bold;
+      display: flex;
+      gap: 10px;
+    }
+
+    .hero-text span {
+      background: linear-gradient(to right, #FFD700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .hero-text span:nth-child(1) { animation-delay: 0.5s; }
+    .hero-text span:nth-child(2) { animation-delay: 1s; }
+    .hero-text span:nth-child(3) { animation-delay: 1.5s; }
+    .hero-text span:nth-child(4) { animation-delay: 2s; }
+    .hero-text span:nth-child(5) { animation-delay: 2.5s; }
+    .hero-text span:nth-child(6) { animation-delay: 3s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Attractions Section */
+    .attractions-section {
+      position:relative;
+      padding: 100px 40px 60px;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .attractions-title {
+      font-size: 60px;
+      font-weight: 800;
+      color:#B8860B;
+      margin-bottom: 10px;
+    }
+
+    .attractions-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      color: #B8860B;
+      margin-bottom: 50px;
+    }
+
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .attractions {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .card {
+      flex: 0 0 25%; /* Show 4 cards at a time */
+      max-width: 25%;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      height: 400px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      margin: 0 10px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 0px 3px 8px rgba(0,0,0,0.8);
+    }
+
+    .explore-btn {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .explore-btn:hover {
+      background: darkred;
+    }
+
+    .card:hover .explore-btn {
+      display: inline-block;
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .arrow-right {
+      right: 20px;
+    }
+
+    .arrow-left {
+      left: 20px;
+      display: none; /* Hidden initially */
+    }
+  </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="C:\Users\Asus\Downloads\0_Flowers_Plants_3840x2160.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Joyful Jharkhand</div>
+    <div class="nav-links">
+      <a href="#">Destinations ▾</a>
+      <a href="#">Experiences ▾</a>
+      <a href="#">Plan your trip ▾</a>
+    </div>
+    <div class="nav-links">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/24px-Flag_of_India.svg.png" alt="Language"> EN ▾</a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/search.png" alt="Search"></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/menu.png" alt="Menu"></a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-text">
+      <span>Journey</span>
+      <span>into</span>
+      <span>the</span>
+      <span>heart</span>
+      <span>of</span>
+      <span>Jharkhand</span>
+    </div>
+  </div>
+
+  <!-- Attractions Section -->
+  <div class="attractions-section">
+    <div class="attractions-title">ATTRACTIONS</div>
+    <div class="attractions-subtitle">worth a million stories</div>
+
+    <div class="carousel-container">
+      <div class="attractions" id="carousel">
+        <!-- First 4 -->
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\waterfalls.jpg" alt="Waterfalls">
+          <div class="card-text">
+            Waterfalls <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('waterfalls.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\wildlife.jpg" alt="Wildlife">
+          <div class="card-text">
+            Wildlife <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('wildlife.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\dams.jpg" alt="Dams">
+          <div class="card-text">
+            Dams <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('dams.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\hot springs.jpg" alt="Hot Springs">
+          <div class="card-text">
+            Hot Springs <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('hotsprings.html')">Explore</button>
+          </div>
+        </div>
+
+        <!-- Next 4 -->
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\temples.jpg" alt="Temples">
+          <div class="card-text">
+            Temples <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('temples.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\scenic.jpg" alt="Scenic">
+          <div class="card-text">
+            Scenic <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('scenic.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\Users\Asus\Downloads\mountains.jpg" alt="Mountains">
+          <div class="card-text">
+            Mountains <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('mountains.html')">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="C:\New folder\festivals.webp" alt="Festivals">
+          <div class="card-text">
+            Festivals <br>
+            <button class="explore-btn" onclick="navigateWithAnimation('festivals.html')">Explore</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows -->
+      <div class="arrow arrow-left" id="leftArrow">&#10094;</div>
+      <div class="arrow arrow-right" id="rightArrow">&#10095;</div>
+    </div>
+  </div>
+
+  <script>
+    const carousel = document.getElementById("carousel");
+    const leftArrow = document.getElementById("leftArrow");
+    const rightArrow = document.getElementById("rightArrow");
+
+    let currentIndex = 0;
+
+    rightArrow.addEventListener("click", () => {
+      if (currentIndex < 1) {
+        currentIndex++;
+        carousel.style.transform = `translateX(-100%)`;
+        leftArrow.style.display = "block";
+        rightArrow.style.display = "none";
+      }
+    });
+
+    leftArrow.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        carousel.style.transform = `translateX(0%)`;
+        leftArrow.style.display = "none";
+        rightArrow.style.display = "block";
+      }
+    });
+
+    // Page transition function
+    function navigateWithAnimation(url) {
+      document.body.classList.add("fade-in");
+      setTimeout(() => {
+        window.location.href = url;
+      }, 200); // Match transition duration
+    }
+  </script>
+</body>
+</html>

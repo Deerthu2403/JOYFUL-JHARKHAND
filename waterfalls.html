@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful Jharkhand</title>
+
+  <!-- Google Fonts (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background: none;
+    }
+
+    /* Fixed full-screen video background */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: yellowgreen;
+    }
+
+    /* Hero Bottom Text */
+    .bottom-text {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      max-width: 90%;
+      color: white;
+      z-index: 10;
+    }
+
+    .bottom-text .state {
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+
+    .bottom-text .headline {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    @media (max-width: 768px) {
+      .bottom-text .headline {
+        font-size: 36px;
+      }
+      .bottom-text .state {
+        font-size: 16px;
+      }
+    }
+
+    /* CARD SLIDER */
+    .cards-slider {
+      overflow: hidden;
+      width: 100%;
+      padding: 80px 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .cards-page {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Arrows */
+    .arrows {
+      text-align: center;
+      font-size: 30px;
+      margin-top: -20px;
+      margin-bottom: 40px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="C:\Users\Asus\Downloads\waterfalls vid.mp4" type="video/mp4">
+  </video>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="navbar">
+      <div class="logo">Joyful Jharkhand</div>
+
+      <div class="nav-links">
+        <a href="#">Destinations ▾</a>
+        <a href="#">Experiences ▾</a>
+        <a href="#">Plan your trip ▾</a>
+      </div>
+
+      <div class="nav-links">
+        <a href="#">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/24px-Flag_of_India.svg.png">
+          EN ▾
+        </a>
+        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/search.png"></a>
+        <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/menu.png"></a>
+      </div>
+    </div>
+
+    <div class="bottom-text">
+      <div class="state">Jharkhand</div>
+      <div class="headline">The best Waterfalls<br>now in your Eye sight</div>
+    </div>
+  </section>
+
+  <!-- CARD SLIDER (15 Cards / 3 Pages) -->
+  <section class="cards-slider">
+    <div class="cards-wrapper" id="cardsWrapper">
+
+      <!-- PAGE 1 -->
+      <div class="cards-page">
+        <a href="details1.html" class="card">
+          <img src="C:\New folder\images\sita falls.jpg">
+          <div class="card-content">Sita Falls (Jharkhand)</div>
+        </a>
+
+        <a href="details2.html" class="card">
+          <img src="C:\New folder\images\Hundru waterfall.jpg">
+          <div class="card-content">Hundru Falls (Ranchi)</div>
+        </a>
+
+        <a href="details3.html" class="card">
+          <img src="C:\New folder\images\Tamasin Waterfall.jpg">
+          <div class="card-content">Tamasin Waterfall (Chatra)</div>
+        </a>
+
+        <a href="details4.html" class="card">
+          <img src="C:\New folder\images\Rajrappa Waterfall.jpg">
+          <div class="card-content">Rajrappa Waterfall (Ramgarh)</div>
+        </a>
+
+        <a href="details5.html" class="card">
+          <img src="C:\New folder\images\new1.jpg">
+          <div class="card-content">Dassam Falls (Ranchi)</div>
+        </a>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div class="cards-page">
+        <a href="details6.html" class="card">
+          <img src="C:\New folder\images\new2.jpg">
+          <div class="card-content">Lodh Falls (Latehar)</div>
+        </a>
+
+        <a href="details7.html" class="card">
+          <img src="C:\New folder\images\new3.jpg">
+          <div class="card-content">Jonha Falls (Ranchi)</div>
+        </a>
+
+        <a href="details8.html" class="card">
+          <img src="C:\New folder\images\new4.jpg">
+          <div class="card-content">Panchghagh Falls (Khunti)</div>
+        </a>
+
+        <a href="details9.html" class="card">
+          <img src="C:\New folder\images\new5.jpg">
+          <div class="card-content">Upper & Lower Ghaghri Falls (Netarhat)</div>
+        </a>
+
+        <a href="details10.html" class="card">
+          <img src="C:\New folder\images\new6.jpg">
+          <div class="card-content">Moti Jharna (Sahebganj)</div>
+        </a>
+      </div>
+
+      <!-- PAGE 3 -->
+      <div class="cards-page">
+        <a href="details11.html" class="card">
+          <img src="C:\New folder\images\new7.jpg">
+          <div class="card-content">Hirni Falls</div>
+        </a>
+
+        <a href="details12.html" class="card">
+          <img src="C:\New folder\images\new8.jpg">
+          <div class="card-content">Bhatinda Falls (Dhanbad)</div>
+        </a>
+
+        <a href="details13.html" class="card">
+          <img src="C:\New folder\images\new9.jpg">
+          <div class="card-content">Tiger Waterfall (Hazaribagh)</div>
+        </a>
+
+        <a href="details14.html" class="card">
+          <img src="C:\New folder\images\new10.jpg">
+          <div class="card-content"> Usri Falls (Giridih)</div>
+        </a>
+
+        <a href="details15.html" class="card">
+          <img src="C:\New folder\images\new11.jpg">
+          <div class="card-content">Panda Pudding Waterfall (Khunti)</div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Arrows -->
+  <div class="arrows">
+    <span id="leftArrow">&#8592;</span>
+    &nbsp;&nbsp;
+    <span id="rightArrow">&#8594;</span>
+  </div>
+
+  <!-- SLIDER SCRIPT -->
+  <script>
+    let page = 0;
+    const wrapper = document.getElementById("cardsWrapper");
+    const totalPages = 3;
+
+    document.getElementById("rightArrow").onclick = () => {
+      if (page < totalPages - 1) {
+        page++;
+        wrapper.style.transform = `translateX(-${page * 100}%)`;
+      }
+    };
+
+    document.getElementById("leftArrow").onclick = () => {
+      if (page > 0) {
+        page--;
+        wrapper.style.transform = `translateX(-${page * 100}%)`;
+      }
+    };
+  </script>
+
+</body>
+</html>
